@@ -172,12 +172,21 @@ Lanlord is built for a home network you trust:
   cookie. After 10 wrong tries from one address, that address is blocked for 10 minutes.
 - To change the passcode, delete `auth.json` and restart (every device has to enter the new
   one), or set your own with `LANLORD_TOKEN`.
-- Over plain http, files and the passcode cross your network unencrypted. Anyone who can
-  watch your wifi traffic could see them. Use the https address if that matters to you.
 - Uploaded files are served in a way that stops them running scripts inside Lanlord, and
   no request can reach files outside the `shared` folder.
 - It is **not** meant to be exposed to the internet. For access from outside, use a VPN such
   as Tailscale rather than opening a port on your router.
+
+Known limits, to be fixed in a later version:
+
+- **Over plain http, files and the passcode cross your network unencrypted.** The cookie a
+  device keeps *is* the passcode, and the http port is always open, so someone who can watch
+  your wifi traffic could pick it up even if you mostly use the https address. **Forget** on
+  the Devices tab doesn't revoke it; changing the passcode does.
+- **The Windows service runs as SYSTEM**, the most privileged account. Anyone who can edit
+  the Lanlord folder (your own Windows account can) could get their code run with full rights
+  at the next restart. That's no change for an administrator account, but on a PC where you
+  use a standard account, keep the Lanlord folder somewhere only administrators can write to.
 
 ## Troubleshooting
 
