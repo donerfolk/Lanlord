@@ -8,6 +8,11 @@
 and your Windows PC over Wi-Fi. No cable, no cloud, no account, no app to install on the phone.</p>
 
 <p>
+<a href="#send-from-the-iphone-share-sheet-shortcut"><img src="https://img.shields.io/badge/Add%20the%20iPhone%20Shortcut-2a75e3?style=for-the-badge&logo=apple&logoColor=white" alt="Add the Lanlord Shortcut to your iPhone" height="36"></a><br>
+<sub>Share → Lanlord from Photos or any app, like AirDrop.</sub>
+</p>
+
+<p>
 <a href="https://github.com/donerfolk/Lanlord/actions/workflows/selftest.yml"><img src="https://github.com/donerfolk/Lanlord/actions/workflows/selftest.yml/badge.svg" alt="Tests"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2a75e3" alt="MIT license"></a>
 <img src="https://img.shields.io/badge/PC-Windows%2010%20%7C%2011-2a75e3" alt="Runs on Windows 10 and 11">
