@@ -187,8 +187,12 @@ your PC; never share that folder.
 - **Send text:** push a link or note to your other devices and tap to copy it there.
 - **Live updates:** files appear on every device the moment they arrive, including files
   you drop into the `shared` folder in File Explorer.
+- **You are told what arrived:** a file or a text from another device shows a message with
+  **View**, **Show** or **Copy**. Arrivals while the tab is in the background are counted in
+  the tab title and told in one message when you come back.
 - **Devices** tab: see what's online, name your devices, forget old ones.
-- **Phone gestures:** press and hold for the menu, swipe a row right to download, left to delete.
+- **Phone gestures:** press and hold for the menu, swipe a row right to download, left to
+  delete. In the full-screen photo view, swipe sideways for the next file and down to close.
 - **PC keyboard:** `/` search, `Esc` clear, `Ctrl+A` select all, `Delete` delete, arrow keys
   in the preview.
 - **Light, dark or automatic** appearance, per device.

@@ -101,6 +101,7 @@ All JSON and all behind the passcode, unless noted.
 | POST `/api/move` | `{ names, to }` | Move items into a folder |
 | POST `/api/zip` | `names` | Download items as one zip |
 | GET `/api/trash`, POST `/api/restore`, DELETE `/api/trash` | `{ entry }` | List, restore, empty |
+| GET `/api/trash/preview` | `?entry=&kind=image|poster` | Thumbnail of a file in the trash (which lives outside `/files`) |
 | POST `/api/compress/estimate`, POST `/api/compress` | `{ name, quality, scale, overwrite }` | Estimate or compress a photo or video |
 | GET `/api/preview` | `?kind=video\|poster\|image\|jpeg&name=` | A copy the browser can show, or a HEIC as JPEG |
 | GET `/api/events` | | Live updates |
