@@ -1798,7 +1798,9 @@
   listRowsEl.addEventListener('touchcancel', endSwipe, { passive: true });
 
   document.addEventListener('click', (e) => {
-    if (swallowClick){ swallowClick = false; e.stopPropagation(); e.preventDefault(); return; }
+    // isTrusted: only the click the lifting finger fires. Swipe-to-get downloads by clicking a
+    // link in code, and that click used to be swallowed here, so nothing happened.
+    if (swallowClick && e.isTrusted){ swallowClick = false; e.stopPropagation(); e.preventDefault(); return; }
     if (!ctxMenu.contains(e.target)) closeCtx();
   }, true);
   window.addEventListener('resize', closeCtx);
