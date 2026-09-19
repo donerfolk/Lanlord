@@ -1,14 +1,42 @@
-# Lanlord
+<div align="center">
 
-**AirDrop for your Windows PC, plus a folder your phone can always reach.**
+<img src="docs/logo.svg" width="104" height="104" alt="Lanlord logo">
 
-Send photos, videos and files between your iPhone (or Android) and your Windows PC over
-your own wifi. No cable, no cloud, no account, and nothing to install on the phone: it's
-a web page your PC serves, which you add to your Home Screen like an app.
+<h1>Lanlord</h1>
 
-![Lanlord on the PC: shared files in a grid, paired devices, and text sent between devices](docs/screenshots/desktop-light.png)
+<p><strong>AirDrop for Windows.</strong> Send photos, videos and files between your iPhone or Android<br>
+and your Windows PC over Wi-Fi. No cable, no cloud, no account, no app to install on the phone.</p>
 
-![Lanlord on a phone: the file list, the grid in dark mode, and a full-screen photo preview](docs/screenshots/phones.png)
+<p>
+<a href="https://github.com/donerfolk/Lanlord/actions/workflows/selftest.yml"><img src="https://github.com/donerfolk/Lanlord/actions/workflows/selftest.yml/badge.svg" alt="Tests"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2a75e3" alt="MIT license"></a>
+<img src="https://img.shields.io/badge/PC-Windows%2010%20%7C%2011-2a75e3" alt="Runs on Windows 10 and 11">
+<img src="https://img.shields.io/badge/phone-iPhone%20%7C%20Android-2a75e3" alt="Works with iPhone and Android">
+<a href="https://buymeacoffee.com/donerfolk"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-ffdd00?logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
+</p>
+
+<p>
+<a href="#quick-start">Quick start</a> ·
+<a href="#connect-your-phone">Connect your phone</a> ·
+<a href="#features">Features</a> ·
+<a href="#faq">FAQ</a> ·
+<a href="#troubleshooting">Troubleshooting</a>
+</p>
+
+</div>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/desktop-dark.png">
+  <img src="docs/screenshots/desktop-light.png" alt="Lanlord in a browser on a Windows PC: files shared from an iPhone and an Android phone, the list of paired devices, and text sent between devices">
+</picture>
+
+## What is Lanlord?
+
+Lanlord is a free, open-source app that turns your Windows PC into a private file drop for
+your phones. It moves photos, videos and any other files between an iPhone, iPad or Android
+phone and a Windows 10/11 PC over your home Wi-Fi, at full quality and with no size limit.
+The phone needs nothing installed: Lanlord is a web page your PC serves, which you add to
+your Home Screen like an app.
 
 - **Push, like AirDrop:** share from your phone and the file appears on the PC a moment later.
 - **Pull, which AirDrop can't:** everything lands in one `shared` folder on the PC. From the
@@ -20,7 +48,7 @@ a web page your PC serves, which you add to your Home Screen like an app.
 ## How it compares
 
 |  | Lanlord | AirDrop | Cloud drives | LocalSend |
-|---|---|---|---|---|
+|---|:---:|:---:|:---:|:---:|
 | iPhone ↔ Windows | ✅ | ❌ | ✅ | ✅ |
 | Nothing to install on the phone | ✅ | ✅ | ❌ | ❌ |
 | Files never leave your network | ✅ | ✅ | ❌ | ✅ |
@@ -67,7 +95,7 @@ Remove it with `node uninstall-service.js`.
 
 ## Connect your phone
 
-1. Put the phone on the **same wifi** as the PC.
+1. Put the phone on the **same Wi-Fi** as the PC.
 2. Scan `connect-qr.png` with the phone's camera. It opens Lanlord and unlocks it in one
    step: the passcode is part of the link.
 3. In Safari: **Share → Add to Home Screen**. You now have a Lanlord app icon.
@@ -132,9 +160,11 @@ The certificate authority is valid for 10 years. The server certificate renews i
 your PC's address changes, so this is a one-time job. The private keys stay in `certs/` on
 your PC; never share that folder.
 
-## What you can do
+## Features
 
-![Lanlord in dark mode on the PC, with the file list showing size, date and which device sent each file](docs/screenshots/desktop-dark.png)
+<p align="center">
+  <img src="docs/screenshots/phones.png" alt="Lanlord on a phone: the file list in light mode, the grid in dark mode, and a full-screen photo preview with Copy image, Copy link and Save" width="820">
+</p>
 
 - **Upload** from the phone (Photo Library or Files), or drop files and whole folders onto
   the page on the PC. Paste a screenshot with Ctrl+V. Uploads can be paused, resumed and
@@ -172,28 +202,74 @@ Lanlord is built for a home network you trust:
   cookie. After 10 wrong tries from one address, that address is blocked for 10 minutes.
 - To change the passcode, delete `auth.json` and restart (every device has to enter the new
   one), or set your own with `LANLORD_TOKEN`.
+- Over plain http, files and the passcode cross your network unencrypted. Anyone who can
+  watch your Wi-Fi traffic could see them. Use the https address if that matters to you.
 - Uploaded files are served in a way that stops them running scripts inside Lanlord, and
   no request can reach files outside the `shared` folder.
 - It is **not** meant to be exposed to the internet. For access from outside, use a VPN such
   as Tailscale rather than opening a port on your router.
 
-Known limits, to be fixed in a later version:
+## FAQ
 
-- **Over plain http, files and the passcode cross your network unencrypted.** The cookie a
-  device keeps *is* the passcode, and the http port is always open, so someone who can watch
-  your wifi traffic could pick it up even if you mostly use the https address. **Forget** on
-  the Devices tab doesn't revoke it; changing the passcode does.
-- **The Windows service runs as SYSTEM**, the most privileged account. Anyone who can edit
-  the Lanlord folder (your own Windows account can) could get their code run with full rights
-  at the next restart. That's no change for an administrator account, but on a PC where you
-  use a standard account, keep the Lanlord folder somewhere only administrators can write to.
+### Is there an AirDrop for Windows?
+
+Not from Apple: AirDrop only works between Apple devices. Lanlord gives a Windows 10/11 PC
+the same everyday result. Share a photo or video on your iPhone and it appears on the PC
+over Wi-Fi a moment later, and the phone can take any file back from the PC.
+
+### How do I transfer photos and videos from an iPhone to a Windows PC without a cable or iTunes?
+
+Start Lanlord on the PC, scan its QR code with the iPhone camera, and tap **Upload**. For
+videos in their original quality, send them from the Share sheet with **Options → Current**,
+as described in [Getting original quality from an iPhone](#getting-original-quality-from-an-iphone).
+
+### Do I need to install an app on my phone?
+
+No. Lanlord is a web page served by your PC, and you add it to the Home Screen so it opens
+like an app. The only optional extra is the free Shortcut that puts Lanlord in the iPhone
+Share sheet.
+
+### Does Lanlord need an internet connection?
+
+No. The phone and PC only need to be on the same network. It even works on the PC's own
+mobile hotspot with no internet at all. Files are never uploaded to a server or a cloud.
+
+### Does it reduce the quality of my photos and videos?
+
+No. Lanlord copies files byte for byte, with no size limit. The one catch is on the iPhone:
+iOS itself converts videos (and HEIC photos to JPEG) when a web page picks them from the
+Photo Library. The routes in [the table above](#getting-original-quality-from-an-iphone)
+get the original.
+
+### Does it work with Android phones and iPads?
+
+Yes. Any phone or tablet with a modern browser can connect. Android is tested with Chrome
+on a Samsung Galaxy S8; see [On Android](#on-android) for the details.
+
+### How is Lanlord different from LocalSend, Snapdrop or PairDrop?
+
+LocalSend needs its app on every device. Snapdrop and PairDrop send between two open
+browser pages, so both devices have to be ready at the same moment, and nothing is kept
+for later. Lanlord keeps everything in a folder on your PC, so any phone can browse and
+download from it whenever it wants, with nothing installed on the phone.
+
+### Is Lanlord free?
+
+Yes. It's open source under the [MIT license](LICENSE), with no account, no subscription
+and no ads. If it saves you time, you can [buy me a coffee](https://buymeacoffee.com/donerfolk).
+
+### Is it safe to use?
+
+It's made for a home network you trust: every device needs a passcode, files stay on your
+PC, and https is available. It should not be opened to the internet; use a VPN such as
+Tailscale for access away from home. See [Security](#security).
 
 ## Troubleshooting
 
 **The phone can't reach the PC**
-- Are both on the same wifi? Guest networks and some mesh or hotel networks stop devices
+- Are both on the same Wi-Fi? Guest networks and some mesh or hotel networks stop devices
   from seeing each other.
-- Windows: **Settings → Network & internet → your wifi → Network profile type** must be
+- Windows: **Settings → Network & internet → your Wi-Fi → Network profile type** must be
   **Private**. On **Public**, Windows Firewall blocks the phone.
 - A VPN on the phone or PC can route the connection away from your home network. Pause it.
 - If `http://<pc-name>.local:8811` doesn't load (common on Android), use the IP address
@@ -228,6 +304,13 @@ automatically if ffmpeg is installed.
   `$env:LANLORD_PORT=9911; node server.js`. It uses the same `shared` folder.
 - [ARCHITECTURE.md](ARCHITECTURE.md) explains how the code is laid out.
 - No build step: the whole front end is `public/index.html`.
+
+## Support Lanlord
+
+Lanlord is free and open source. If it saved you time or money, a coffee is a great way to
+say thanks. A ⭐ on GitHub helps other people find it too.
+
+<a href="https://buymeacoffee.com/donerfolk"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" height="48"></a>
 
 ## License
 

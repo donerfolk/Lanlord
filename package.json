@@ -1,7 +1,28 @@
 {
   "name": "lanlord",
   "version": "1.0.0",
-  "description": "Local network file transfer between PC and iPhone, full quality.",
+  "description": "AirDrop for Windows: send photos, videos and files between iPhone or Android and a Windows PC over Wi-Fi. No app, no cloud, no account.",
+  "keywords": [
+    "airdrop",
+    "airdrop-alternative",
+    "airdrop-for-windows",
+    "file-transfer",
+    "file-sharing",
+    "iphone",
+    "android",
+    "windows",
+    "wifi",
+    "lan",
+    "local-network",
+    "self-hosted",
+    "pwa",
+    "localsend-alternative"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donerfolk/Lanlord.git"
+  },
+  "funding": "https://buymeacoffee.com/donerfolk",
   "main": "server.js",
   "license": "MIT",
   "scripts": {
