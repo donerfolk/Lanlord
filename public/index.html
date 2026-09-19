@@ -43,7 +43,10 @@
     --border:#e3e8f0; --border-2:#ebeef4; --accent:#2569d6; --accent-hover:#1d55b3; --accent-text:#ffffff;
     --accent-wash:#e9f1fd; --accent-wash-border:#d3e3fb; --danger:#dc2626;
     --ok-bg:#ecfdf3; --ok-border:#ccf5e0; --ok-dot:#12b76a; --ok-text:#04613b;
-    --track:#eef2f8; --shadow:0 40px 80px -50px rgba(11,18,32,.45);
+    --track:#eef2f8;
+    /* Two layers: a hairline contact shadow and a soft ambient one. One huge blur with a big
+       negative spread only left a grey smudge under the bottom edge on a light background. */
+    --shadow:0 1px 2px rgba(11,18,32,.06), 0 12px 30px -10px rgba(11,18,32,.20);
   }
   /* Set by the script in <head> from the saved choice, or the OS when that's "auto". */
   :root[data-theme="dark"]{
@@ -51,7 +54,7 @@
     --border:#262b38; --border-2:#20242f; --accent:#5ea0f5; --accent-hover:#7db4f8; --accent-text:#08101f;
     --accent-wash:#16263f; --accent-wash-border:#27427a; --danger:#f87171;
     --ok-bg:#0d2419; --ok-border:#16452c; --ok-dot:#2fd480; --ok-text:#5fe3a3;
-    --track:#1c2028; --shadow:0 40px 80px -50px rgba(0,0,0,.6);
+    --track:#1c2028; --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 40px -12px rgba(0,0,0,.7);
     color-scheme:dark;
   }
   *{box-sizing:border-box;}
@@ -82,41 +85,36 @@
     display:flex; flex-direction:column; position:sticky; top:0; height:100vh;
   }
   .brand{ display:flex; align-items:center; gap:10px; padding:20px 18px 18px; }
-  .brand-mark{ width:26px; height:26px; border-radius:8px; background:var(--accent); display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:700; letter-spacing:-.02em; flex:none; }
+  .brand-mark{ width:26px; height:26px; border-radius:9px; background:var(--accent); display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:700; letter-spacing:-.02em; flex:none; }
   .brand-name{ font-size:15px; font-weight:700; letter-spacing:-.025em; }
 
-  .nav{ padding:2px 10px; display:flex; flex-direction:column; gap:2px; }
-  .nav-item{ display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 11px; border-radius:9px; color:var(--muted); font-size:14px; cursor:pointer; border:none; background:none; width:100%; text-align:left; }
+  .nav{ padding:4px 10px; display:flex; flex-direction:column; gap:4px; }
+  .nav-item{ display:flex; align-items:center; justify-content:space-between; gap:8px; padding:12px 14px; border-radius:14px; color:var(--muted); font-size:15.5px; font-weight:500; cursor:pointer; border:none; background:none; width:100%; text-align:left; }
   .nav-item:hover{ background:var(--track); }
   .nav-item.active{ background:var(--accent-wash); color:var(--accent-hover); font-weight:600; }
-  .nav-item-inner{ display:flex; align-items:center; gap:10px; min-width:0; }
+  .nav-item-inner{ display:flex; align-items:center; gap:12px; min-width:0; }
   .nav-icon{ display:flex; flex:none; opacity:.85; }
-  .nav-badge{ font-size:12.5px; font-variant-numeric:tabular-nums; color:var(--muted-2); }
+  .nav-badge{ font-size:13.5px; font-variant-numeric:tabular-nums; color:var(--muted-2); }
   .nav-item.active .nav-badge{ color:var(--accent); }
 
-  .devices-block{ margin-top:26px; padding:0 18px; }
-  .devices-heading{ font-size:11.5px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--muted-2); margin-bottom:12px; }
-  .device-row{ display:flex; align-items:center; gap:9px; padding:3px 0; }
+  /* The online dot on the Devices page. */
   .device-dot{ width:7px; height:7px; border-radius:50%; flex:none; }
   .device-dot.on{ background:var(--ok-dot); }
   .device-dot.off{ background:var(--muted-2); opacity:.5; }
-  .device-label{ font-size:13.5px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .device-label.off{ color:var(--muted-2); font-weight:400; }
-  .device-tag{ font-size:12px; color:var(--muted-2); flex:none; }
 
   .sidebar-foot{ margin-top:auto; padding:16px 18px 20px; display:flex; flex-direction:column; gap:12px; }
-  .disk-card{ border:1px solid var(--border); background:var(--surface); border-radius:12px; padding:13px; }
+  .disk-card{ border:1px solid var(--border); background:var(--surface); border-radius:16px; padding:13px; }
   .disk-row{ display:flex; justify-content:space-between; align-items:baseline; }
   .disk-label{ font-size:12.5px; color:var(--muted); }
   .disk-val{ font-size:13px; font-weight:600; }
-  .meter{ height:5px; border-radius:3px; background:var(--track); margin-top:10px; overflow:hidden; }
-  .meter-fill{ height:100%; background:var(--accent); border-radius:3px; transition:width .3s; }
+  .meter{ height:5px; border-radius:999px; background:var(--track); margin-top:10px; overflow:hidden; }
+  .meter-fill{ height:100%; background:var(--accent); border-radius:999px; transition:width .3s; }
   .reach-note{ font-size:12px; color:var(--muted-2); line-height:1.5; }
 
   /* Main column */
   #main{ flex:1; min-width:0; display:flex; flex-direction:column; }
   .topbar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 24px; border-bottom:1px solid var(--border-2); flex-wrap:wrap; }
-  .search{ flex:1; max-width:360px; min-width:160px; display:flex; align-items:center; gap:10px; background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:0 13px; }
+  .search{ flex:1; max-width:360px; min-width:160px; display:flex; align-items:center; gap:10px; background:var(--surface-2); border:1px solid var(--border); border-radius:999px; padding:0 13px; }
   .search input{ flex:1; min-width:0; background:transparent; border:none; outline:none; font-family:inherit; font-size:14px; color:var(--text); padding:10px 0; }
   .search input::placeholder{ color:var(--muted-2); }
   .search-ico{ width:12px; height:12px; border:1.5px solid var(--muted-2); border-radius:50%; flex:none; position:relative; }
@@ -126,15 +124,15 @@
   .conn-pill{ display:flex; align-items:center; gap:8px; background:var(--ok-bg); border:1px solid var(--ok-border); border-radius:999px; padding:6px 12px; font-size:13px; font-weight:500; color:var(--ok-text); white-space:nowrap; }
   .conn-pill .dot{ width:6px; height:6px; border-radius:50%; background:var(--ok-dot); animation:pulse 2.4s ease-in-out infinite; flex:none; }
 
-  .btn{ font-size:13.5px; font-weight:650; letter-spacing:-.006em; border:none; border-radius:10px; padding:10px 16px; cursor:pointer; }
-  .btn-primary{ color:#fff; background:var(--accent); box-shadow:0 1px 2px rgba(11,18,32,.18); }
+  .btn{ font-size:13.5px; font-weight:650; letter-spacing:-.006em; border:none; border-radius:999px; padding:10px 16px; cursor:pointer; }
+  .btn-primary{ color:#fff; background:var(--accent); box-shadow:0 1px 2px rgba(11,18,32,.10); }
   .btn-primary:hover{ background:var(--accent-hover); }
   .btn-ghost{ background:transparent; color:var(--muted); }
   .btn-ghost:hover{ color:var(--text); }
-  .btn-sm{ font-size:13px; padding:8px 14px; border-radius:9px; }
+  .btn-sm{ font-size:13px; padding:8px 14px; border-radius:999px; }
   .btn:disabled{ opacity:.5; cursor:default; }
 
-  .compress-dlg{ border:1px solid var(--border); border-radius:14px; background:var(--surface); color:var(--text); padding:20px; width:min(360px, calc(100vw - 32px)); box-shadow:var(--shadow); }
+  .compress-dlg{ border:1px solid var(--border); border-radius:22px; background:var(--surface); color:var(--text); padding:20px; width:min(360px, calc(100vw - 32px)); box-shadow:var(--shadow); }
   .compress-dlg::backdrop{ background:rgba(6,8,14,.55); }
   .compress-dlg h3{ margin:0 0 4px; font-size:16px; font-weight:650; }
   .compress-dlg .sub{ margin:0 0 16px; font-size:13px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -156,21 +154,24 @@
 
   .content-row{ flex:1; display:flex; min-height:0; }
   .files-col{ flex:1; min-width:0; display:flex; flex-direction:column; }
-  .files-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 24px 12px; flex-wrap:wrap; }
+  .files-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 24px 12px; flex-wrap:wrap; container-type:inline-size; }
+  /* Upload is the main thing you came for, so it grows when the toolbar has the room - measured
+     on the toolbar, not the window: the side nav and right panel take most of the difference. */
+  @container (min-width:640px){ #uploadBtn{ font-size:15px; padding:12px 24px; } }
   .files-title-wrap{ display:flex; align-items:baseline; gap:10px; }
   .files-title{ font-size:16px; font-weight:700; letter-spacing:-.025em; }
   .files-count{ font-size:13px; font-weight:500; color:var(--muted-2); font-variant-numeric:tabular-nums; }
 
   /* Wraps rather than pushing the page wider than a phone: at 435px+ it was one row, and on a
      360-393px phone the whole page scrolled sideways (the List/Grid toggle hung off the edge). */
-  .files-controls{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .files-controls{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end; } /* a wrapped Upload stays at the right edge, by the drop box */
   .files-controls > *{ white-space:nowrap; }
-  .sort-select{ font-family:inherit; font-size:13px; font-weight:600; color:var(--muted); background:var(--track); border:none; border-radius:10px; padding:8px 10px; cursor:pointer; }
-  .view-toggle{ display:flex; background:var(--track); border-radius:10px; padding:3px; gap:2px; }
-  .view-toggle button{ font-family:inherit; font-size:13px; font-weight:600; padding:7px 14px; border-radius:8px; cursor:pointer; border:none; background:none; color:var(--muted); }
-  .view-toggle button.active{ background:var(--surface); color:var(--text); box-shadow:0 1px 2px rgba(11,18,32,.12); }
+  .sort-select{ font-family:inherit; font-size:13px; font-weight:600; color:var(--muted); background:var(--track); border:none; border-radius:999px; padding:8px 10px; cursor:pointer; }
+  .view-toggle{ display:flex; background:var(--track); border-radius:999px; padding:3px; gap:2px; }
+  .view-toggle button{ font-family:inherit; font-size:13px; font-weight:600; padding:7px 14px; border-radius:999px; cursor:pointer; border:none; background:none; color:var(--muted); }
+  .view-toggle button.active{ background:var(--surface); color:var(--text); box-shadow:0 1px 1px rgba(11,18,32,.04), 0 2px 6px -1px rgba(11,18,32,.14); }
 
-  .sel-bar{ display:flex; align-items:center; justify-content:space-between; margin:0 24px 10px; background:var(--accent-wash); border:1px solid var(--accent-wash-border); border-radius:11px; padding:10px 13px; }
+  .sel-bar{ display:flex; align-items:center; justify-content:space-between; margin:0 24px 10px; background:var(--accent-wash); border:1px solid var(--accent-wash-border); border-radius:16px; padding:10px 13px; }
   .sel-label{ font-size:13.5px; color:var(--accent-hover); font-weight:600; }
   .sel-actions{ display:flex; gap:8px; align-items:center; }
   .link-btn{ font-size:13px; color:var(--muted); background:none; border:none; cursor:pointer; padding:8px 10px; }
@@ -185,12 +186,12 @@
   .col-src{ width:110px; flex:none; text-align:right; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .col-get{ width:108px; flex:none; }
 
-  .file-row{ display:flex; align-items:center; gap:16px; padding:10px; border-bottom:1px solid var(--border-2); border-radius:9px; cursor:pointer; }
+  .file-row{ display:flex; align-items:center; gap:16px; padding:10px; border-bottom:1px solid var(--border-2); border-radius:12px; cursor:pointer; }
   .file-row:hover{ background:var(--surface-2); }
   .file-row.selected{ background:var(--accent-wash); }
-  .checkbox{ width:16px; height:16px; border-radius:5px; border:1.5px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:700; flex:none; }
+  .checkbox{ width:16px; height:16px; border-radius:50%; border:1.5px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:700; flex:none; }
   .checkbox.checked{ border-color:var(--accent); background:var(--accent); }
-  .file-thumb{ width:32px; height:32px; border-radius:8px; flex:none; background:repeating-linear-gradient(45deg,var(--track) 0 5px, var(--surface-2) 5px 10px); border:1px solid var(--border-2); display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; letter-spacing:.02em; color:var(--muted-2); overflow:hidden; }
+  .file-thumb{ width:32px; height:32px; border-radius:10px; flex:none; background:repeating-linear-gradient(45deg,var(--track) 0 5px, var(--surface-2) 5px 10px); border:1px solid var(--border-2); display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; letter-spacing:.02em; color:var(--muted-2); overflow:hidden; }
   .file-thumb img, .file-thumb video, .tile-thumb img, .tile-thumb video{ width:100%; height:100%; object-fit:cover; display:block; }
   .thumb-clickable{ cursor:zoom-in; }
   .thumb-clickable:hover{ filter:brightness(.9); }
@@ -208,7 +209,7 @@
   .row-actions{ width:108px; flex:none; display:flex; justify-content:flex-end; align-items:center; gap:8px; }
 
   .file-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:14px; padding:2px 24px 24px; }
-  .tile{ border:1px solid var(--border-2); border-radius:12px; overflow:hidden; cursor:pointer; background:var(--surface); }
+  .tile{ border:1px solid var(--border-2); border-radius:18px; overflow:hidden; cursor:pointer; background:var(--surface); }
   .tile.selected{ border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-wash); }
   .tile-thumb{ height:104px; background:repeating-linear-gradient(45deg,var(--track) 0 6px, var(--surface-2) 6px 12px); display:flex; align-items:center; justify-content:center; font-size:10.5px; font-weight:700; letter-spacing:.06em; color:var(--muted-2); overflow:hidden; }
   .tile-body{ padding:10px 11px 12px; }
@@ -217,9 +218,15 @@
 
   .empty-state{ color:var(--muted-2); font-size:14px; padding:40px 20px; text-align:center; }
 
+  /* On the PC until the first phone connects: pairing is the first thing anyone does, and the QR was in Settings. */
+  .pair-card{ display:flex; align-items:center; gap:18px; margin:0 24px 14px; }
+  .pair-qr{ width:116px; height:116px; flex:none; border-radius:14px; border:1px solid var(--border); background:#fff; padding:6px; }
+  .pair-title{ font-size:15px; font-weight:700; letter-spacing:-.02em; }
+  .pair-text{ font-size:13px; color:var(--muted); line-height:1.55; margin-top:4px; max-width:440px; }
+
   /* Folders */
   .crumbs{ display:flex; align-items:center; gap:2px; flex-wrap:wrap; min-width:0; }
-  .crumb{ font-family:inherit; font-size:16px; font-weight:700; letter-spacing:-.025em; color:var(--accent); background:none; border:none; cursor:pointer; padding:2px 5px; border-radius:7px; max-width:220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .crumb{ font-family:inherit; font-size:16px; font-weight:700; letter-spacing:-.025em; color:var(--accent); background:none; border:none; cursor:pointer; padding:2px 5px; border-radius:999px; max-width:220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .crumb:hover{ background:var(--track); }
   .crumb.current{ color:var(--text); cursor:default; }
   .crumb.current:hover{ background:none; }
@@ -232,8 +239,8 @@
   .tile-thumb.thumb-folder svg{ width:40px; height:40px; }
 
   /* Right-click / long-press menu */
-  .ctx-menu{ position:fixed; z-index:120; min-width:190px; max-width:min(300px, 90vw); max-height:60vh; overflow:auto; background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow), 0 2px 8px rgba(11,18,32,.14); padding:6px; }
-  .ctx-item{ display:flex; align-items:center; justify-content:space-between; gap:14px; width:100%; text-align:left; font-family:inherit; font-size:13.5px; color:var(--text); background:none; border:none; border-radius:8px; padding:9px 10px; cursor:pointer; }
+  .ctx-menu{ position:fixed; z-index:120; min-width:190px; max-width:min(300px, 90vw); max-height:60vh; overflow:auto; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); padding:6px; }
+  .ctx-item{ display:flex; align-items:center; justify-content:space-between; gap:14px; width:100%; text-align:left; font-family:inherit; font-size:13.5px; color:var(--text); background:none; border:none; border-radius:10px; padding:9px 10px; cursor:pointer; }
   .ctx-item:hover{ background:var(--surface-2); }
   .ctx-item span:first-child{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .ctx-item.danger{ color:var(--danger); }
@@ -242,7 +249,7 @@
 
   /* Right panel */
   .right-panel{ width:284px; flex:none; border-left:1px solid var(--border-2); padding:18px 20px 24px; display:flex; flex-direction:column; gap:20px; overflow-y:auto; }
-  .dropzone{ border:1.5px dashed var(--border); border-radius:13px; background:var(--surface-2); padding:26px 12px; text-align:center; cursor:pointer; transition:.15s border-color, .15s background; }
+  .dropzone{ border:1.5px dashed var(--border); border-radius:20px; background:var(--surface-2); padding:26px 12px; text-align:center; cursor:pointer; transition:.15s border-color, .15s background; }
   .dropzone.drag{ border-color:var(--accent); background:var(--accent-wash); }
   .dropzone-title{ font-size:14px; font-weight:600; }
   .dropzone-sub{ font-size:12.5px; color:var(--muted-2); margin-top:5px; }
@@ -251,7 +258,7 @@
   .panel-title{ font-size:13px; font-weight:600; }
   .panel-title-row{ display:flex; align-items:baseline; justify-content:space-between; }
 
-  .transfer-card{ border:1px solid var(--border); border-radius:12px; padding:12px; }
+  .transfer-card{ border:1px solid var(--border); border-radius:16px; padding:12px; }
   .transfer-top{ display:flex; justify-content:space-between; gap:8px; }
   .transfer-name{ font-size:13px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .transfer-name.queued{ color:var(--muted); font-weight:400; }
@@ -262,26 +269,26 @@
   .mini-btn{ font-size:11.5px; font-weight:600; color:var(--accent); background:none; border:none; cursor:pointer; padding:0; }
   .mini-btn.danger{ color:var(--danger); }
 
-  .text-box{ border:1px solid var(--border); border-radius:12px; padding:12px; background:var(--surface); }
+  .text-box{ border:1px solid var(--border); border-radius:16px; padding:12px; background:var(--surface); }
   .text-box textarea{ width:100%; border:none; outline:none; resize:none; background:transparent; font-family:inherit; font-size:13px; color:var(--text); line-height:1.55; min-height:44px; }
   .text-box textarea::placeholder{ color:var(--muted-2); }
   .text-box-actions{ display:flex; justify-content:flex-end; margin-top:12px; }
 
-  .clip-item{ background:var(--accent-wash); border:1px solid var(--accent-wash-border); border-radius:12px; padding:11px 12px; cursor:pointer; }
+  .clip-item{ background:var(--accent-wash); border:1px solid var(--accent-wash-border); border-radius:16px; padding:11px 12px; cursor:pointer; }
   .clip-item:hover{ filter:brightness(0.98); }
   .clip-head{ font-size:11.5px; font-weight:600; color:var(--accent-hover); display:flex; justify-content:space-between; gap:8px; }
   .clip-text{ font-size:13px; color:var(--text); word-break:break-word; line-height:1.55; margin-top:5px; white-space:pre-wrap; }
 
   /* toasts */
   #toasts{ position:fixed; right:20px; bottom:20px; display:flex; flex-direction:column; gap:8px; z-index:70; align-items:flex-end; }
-  .toast{ background:var(--text); color:var(--bg); font-size:13px; font-weight:500; padding:10px 14px; border-radius:10px; box-shadow:var(--shadow); animation:toast-in .15s ease-out; max-width:320px; display:flex; align-items:center; gap:12px; }
+  .toast{ background:var(--text); color:var(--bg); font-size:13px; font-weight:500; padding:10px 14px; border-radius:16px; box-shadow:var(--shadow); animation:toast-in .15s ease-out; max-width:320px; display:flex; align-items:center; gap:12px; overflow-wrap:anywhere; } /* anywhere: a sent link has no spaces to wrap at */
   /* inherit + underline, not accent: the toast is inverted, so a brand colour lands on the wrong background half the time */
   .toast-action{ font:inherit; font-weight:700; color:inherit; background:none; border:none; padding:0; cursor:pointer; text-decoration:underline; white-space:nowrap; }
 
   /* preview lightbox */
   .preview-overlay{ position:fixed; inset:0; background:rgba(6,8,14,.88); z-index:60; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:56px 20px; }
   .preview-body{ display:flex; align-items:center; justify-content:center; max-width:92vw; max-height:70vh; }
-  .preview-body img, .preview-body video{ max-width:92vw; max-height:70vh; object-fit:contain; border-radius:10px; box-shadow:var(--shadow); }
+  .preview-body img, .preview-body video{ max-width:92vw; max-height:70vh; object-fit:contain; border-radius:16px; box-shadow:var(--shadow); }
   .preview-body audio{ width:min(460px, 88vw); }
   .preview-actions{ margin-top:12px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; flex:none; } /* four buttons for a HEIC don't fit a 375px phone */
   .preview-actions .btn{ background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.22); }
@@ -303,20 +310,22 @@
   .page-title{ font-size:19px; font-weight:700; letter-spacing:-.025em; margin:4px 0 4px; }
   .page-sub{ font-size:13.5px; color:var(--muted); margin:0 0 20px; }
   .card-list{ display:flex; flex-direction:column; gap:10px; }
-  .card{ background:var(--surface); border:1px solid var(--border); border-radius:13px; padding:14px 16px; }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:14px 16px; }
   .device-card-row{ display:flex; align-items:center; gap:12px; }
   .device-card-row .device-dot{ width:8px; height:8px; }
   .device-info{ flex:1; min-width:0; }
   .device-name{ font-size:14.5px; font-weight:700; letter-spacing:-.02em; }
   .device-kind{ font-size:12.5px; color:var(--muted-2); margin-top:2px; }
-  .rename-input{ font-family:inherit; font-size:13px; border:1px solid var(--border); border-radius:8px; padding:7px 9px; background:var(--surface); color:var(--text); width:130px; }
+  .rename-input{ font-family:inherit; font-size:13px; border:1px solid var(--border); border-radius:10px; padding:7px 9px; background:var(--surface); color:var(--text); width:130px; }
   .settings-field{ margin-bottom:18px; }
   .settings-label{ font-size:12.5px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px; }
-  .settings-input{ font-family:inherit; font-size:14px; border:1px solid var(--border); border-radius:10px; padding:10px 12px; background:var(--surface); color:var(--text); width:100%; max-width:320px; }
-  .url-row{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:8px; word-break:break-all; }
-  .seg{ display:inline-flex; background:var(--track); border-radius:10px; padding:3px; gap:2px; }
-  .seg button{ font-family:inherit; font-size:13px; font-weight:600; padding:7px 15px; border-radius:8px; cursor:pointer; border:none; background:none; color:var(--muted); }
-  .seg button.active{ background:var(--surface); color:var(--text); box-shadow:0 1px 2px rgba(11,18,32,.12); }
+  .settings-input{ font-family:inherit; font-size:14px; border:1px solid var(--border); border-radius:12px; padding:10px 12px; background:var(--surface); color:var(--text); width:100%; max-width:320px; }
+  .url-row{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:10px 12px; margin-bottom:8px; word-break:break-all; }
+  .seg{ display:inline-flex; background:var(--track); border-radius:999px; padding:3px; gap:2px; }
+  .seg button{ font-family:inherit; font-size:13px; font-weight:600; padding:7px 15px; border-radius:999px; cursor:pointer; border:none; background:none; color:var(--muted); }
+  .seg button.active{ background:var(--surface); color:var(--text); box-shadow:0 1px 1px rgba(11,18,32,.04), 0 2px 6px -1px rgba(11,18,32,.14); }
+  /* Scrolls inside the card, so the count and Empty now stay put below it. */
+  .trash-list{ max-height:min(46vh, 340px); overflow-y:auto; overscroll-behavior:contain; border-bottom:1px solid var(--border-2); }
   .trash-row{ display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--border-2); font-size:13.5px; }
   .trash-row:last-child{ border-bottom:none; }
   .trash-name{ flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -340,9 +349,11 @@
     .topbar{ padding:14px 16px; position:sticky; top:env(safe-area-inset-top, 0); background:var(--bg); z-index:5; }
     .stats-row{ display:none; }
     .files-head{ padding:14px 16px 10px; }
+    .files-controls{ justify-content:flex-start; }
     .file-list{ padding:0 8px 24px; }
     .file-grid{ padding:2px 12px 24px; grid-template-columns:repeat(2,1fr); }
     .sel-bar{ margin:0 12px 10px; flex-wrap:wrap; gap:6px; }
+    .pair-card{ margin:0 12px 10px; }
     .sel-actions{ flex-wrap:wrap; }
     /* Narrow rows: name + meta line, no fixed columns - with them the name column collapsed to 0px on a phone. */
     .col-when, .col-src, .col-size{ display:none; }
@@ -353,7 +364,7 @@
     .file-row{ gap:10px; min-height:44px; touch-action:pan-y; position:relative; z-index:1; }
     .file-row:not(.selected){ background:var(--bg); } /* opaque, so the swipe backdrop only shows in the gap it opens */
     #listView{ position:relative; }
-    .swipe-bg{ position:absolute; left:0; right:0; display:none; align-items:center; padding:0 16px; border-radius:9px; font-size:13px; font-weight:700; color:#fff; }
+    .swipe-bg{ position:absolute; left:0; right:0; display:none; align-items:center; padding:0 16px; border-radius:12px; font-size:13px; font-weight:700; color:#fff; }
     .swipe-bg.get{ background:var(--accent); justify-content:flex-start; }
     .swipe-bg.del{ background:var(--danger); justify-content:flex-end; }
     .row-actions{ width:auto; }
@@ -373,10 +384,14 @@
     .mnav-upload .mnav-icon{ width:58px; height:58px; border-radius:50%; background:var(--accent); color:#fff; align-items:center; justify-content:center; margin-top:-26px; box-shadow:0 4px 14px rgba(37,105,214,.35); }
     .mnav-upload{ color:var(--accent); }
     .mnav-upload:active .mnav-icon{ transform:scale(.94); }
-    .topbar #uploadBtn{ display:none; }
+    #uploadBtn{ display:none; } /* the bottom bar's Upload does it here */
+
+    #toasts{ right:12px; left:12px; bottom:80px; align-items:center; } /* clear of the bottom bar */
 
     .mobile-panel{ padding:0 16px 20px; }
   }
+  /* Touch: delete is swipe-left or press-and-hold, not a × a thumb-width from Get. */
+  @media (pointer:coarse){ .row-actions [data-role="del"]{ display:none; } }
 </style>
 </head>
 <body>
@@ -389,11 +404,6 @@
     </div>
 
     <nav class="nav" id="nav"></nav>
-
-    <div class="devices-block">
-      <div class="devices-heading">Paired devices</div>
-      <div id="sidebarDevices"></div>
-    </div>
 
     <div class="sidebar-foot">
       <div class="disk-card">
@@ -418,7 +428,6 @@
           <div class="dot"></div>
           <div id="connLabel">device connected</div>
         </div>
-        <button class="btn btn-primary" id="uploadBtn">Upload</button>
       </div>
     </div>
 
@@ -466,8 +475,12 @@
               <button id="listTabBtn" class="active">List</button>
               <button id="gridTabBtn">Grid</button>
             </div>
+            <!-- In the folder's own toolbar, next to the drop box: it uploads into the folder you're looking at. -->
+            <button class="btn btn-sm btn-primary" id="uploadBtn">Upload</button>
           </div>
         </div>
+
+        <div class="card pair-card" id="pairCard" style="display:none;"></div>
 
         <div class="sel-bar" id="selBar" style="display:none;">
           <div class="sel-label" id="selLabel"></div>
@@ -629,7 +642,12 @@
       el.appendChild(b);
     }
     toasts.appendChild(el);
-    if (ms !== 0) setTimeout(() => el.remove(), ms || 3500);
+    if (ms !== 0){
+      // One that lands while the tab is in the background waits until you're back to read it.
+      const start = () => setTimeout(() => el.remove(), ms || 3500);
+      if (document.hidden) document.addEventListener('visibilitychange', start, { once: true });
+      else start();
+    }
     return el;
   }
   // A phone that lost the PC used to just sit on a stale list with no hint why.
@@ -796,20 +814,35 @@
   // An iPhone original (HEIC photo, HEVC video) often won't decode in a browser on Windows:
   // ask the server for a small JPEG made from it, and only if that fails too, show the icon.
   function previewUrl(rel, kind){ return '/api/preview?kind=' + kind + '&name=' + encodeURIComponent(rel); }
+  // A trashed file's thumbnail: it lives outside /files, so it comes from the trash's own route.
+  // A video shows the server-made poster rather than a <video>, which would need lazyVideos -
+  // and that observer is disconnected whenever the file list redraws behind the Settings page.
+  function trashThumbHtml(it){
+    if (it.isDir) return FOLDER_SVG;
+    const url = (kind) => '/api/trash/preview?entry=' + encodeURIComponent(it.entry) + (kind ? '&amp;kind=' + kind : '');
+    const img = (src, alt) => `<img data-role="thumb-media" data-name="${escapeHtml(it.name)}"${alt ? ` data-alt="${alt}"` : ''} src="${src}" alt="" loading="lazy" decoding="async">`;
+    if (isImageFile(it.name)) return img(url(), url('image')); // the file itself, then ffmpeg's JPEG of it (HEIC on Windows)
+    if (isVideoFile(it.name)) return img(url('poster'));
+    return iconFor(it.name);
+  }
   function wireThumbFallbacks(container){
     container.querySelectorAll('[data-role="thumb-media"]').forEach(el => {
       if (el.dataset.src) lazyVideos ? lazyVideos.observe(el) : (el.src = el.dataset.src);
       el.addEventListener('error', () => {
         const rel = el.closest('[data-path]') && el.closest('[data-path]').dataset.path;
-        const img = document.createElement('img');
-        img.alt = ''; img.decoding = 'async';
-        img.addEventListener('error', () => {
+        // data-alt: a second try outside the share's own URL space (a trashed file's).
+        const alt = el.dataset.alt || (rel && previewUrl(rel, isVideoFile(el.dataset.name) ? 'poster' : 'image'));
+        const icon = () => {
           const div = document.createElement('div');
           div.className = 'thumb-fallback';
           div.textContent = iconFor(el.dataset.name);
-          img.replaceWith(div);
-        }, { once: true });
-        if (rel) img.src = previewUrl(rel, isVideoFile(el.dataset.name) ? 'poster' : 'image');
+          return div;
+        };
+        if (!alt) return el.replaceWith(icon());
+        const img = document.createElement('img');
+        img.alt = ''; img.decoding = 'async';
+        img.addEventListener('error', () => img.replaceWith(icon()), { once: true });
+        img.src = alt;
         el.replaceWith(img);
       }, { once: true });
     });
@@ -872,7 +905,7 @@
       if (item.id === 'transfers') badge = activeUploads() || '';
       if (item.id === 'clipboard') badge = state.clipboard.length || '';
       if (item.id === 'devices') badge = state.devices.filter(d => d.online).length;
-      btn.innerHTML = `<span class="nav-item-inner"><span class="nav-icon">${navIconSvg(item.id, 16)}</span><span>${item.label}</span></span>${badge !== '' ? `<span class="nav-badge">${badge}</span>` : ''}`;
+      btn.innerHTML = `<span class="nav-item-inner"><span class="nav-icon">${navIconSvg(item.id, 20)}</span><span>${item.label}</span></span>${badge !== '' ? `<span class="nav-badge">${badge}</span>` : ''}`;
       btn.addEventListener('click', () => setView(item.id));
       navEl.appendChild(btn);
     }
@@ -911,16 +944,26 @@
     if (state.view === 'settings') return renderSettingsPage();
   }
 
-  // ---------- sidebar devices + disk ----------
-  function renderSidebarDevices(){
-    const el = document.getElementById('sidebarDevices');
-    el.innerHTML = state.devices.map(d => `
-      <div class="device-row">
-        <div class="device-dot ${d.online ? 'on' : 'off'}"></div>
-        <div class="device-label ${d.online ? '' : 'off'}">${escapeHtml(d.name)}</div>
-        ${d.isHost ? '<div class="device-tag">host</div>' : (d.online ? '' : '<div class="device-tag">offline</div>')}
-      </div>
-    `).join('') || '<div class="device-label off">No other devices yet</div>';
+  // ---------- pair card + disk ----------
+
+  // On the PC, until a first phone has connected. The list always holds the host once loaded,
+  // so an empty one means "not loaded yet", not "nothing paired".
+  function renderPairCard(){
+    const el = document.getElementById('pairCard');
+    const show = state.isHost && state.devices.length > 0 && !state.devices.some(d => !d.isHost);
+    if (show && !el.innerHTML){
+      el.innerHTML = `
+        <img class="pair-qr" src="/connect-qr.png" alt="QR code that opens Lanlord">
+        <div>
+          <div class="pair-title">Connect your phone</div>
+          <div class="pair-text">Put it on the same wifi as this PC and scan this code with its camera. Lanlord opens, already unlocked.</div>
+          <div class="pair-text">Then add it to the Home Screen (in Safari: Share &rarr; Add to Home Screen) to use it like an app.</div>
+          <button class="link-btn" data-role="pair-settings" style="color:var(--accent); padding:6px 0 0;">Other ways to connect&hellip;</button>
+        </div>`;
+      el.querySelector('img').addEventListener('error', () => { el.dataset.broken = '1'; el.style.display = 'none'; }); // no QR file: nothing to scan
+      el.querySelector('[data-role="pair-settings"]').addEventListener('click', () => setView('settings'));
+    }
+    el.style.display = show && !el.dataset.broken ? '' : 'none';
   }
 
   function renderDisk(){
@@ -970,11 +1013,15 @@
     document.getElementById('statQueueCount').textContent = pending.length;
     document.getElementById('statQueueSub').textContent = pending.length === 1 ? 'file · ' + fmtSize(pendingBytes) : 'files · ' + fmtSize(pendingBytes);
 
-    // Progress in the tab title, so you can switch away and still see it.
-    const up = state.queue.find(t => t.status === 'uploading');
-    document.title = up && up.total ? `↑ ${Math.round(up.loaded / up.total * 100)}% · Lanlord` : 'Lanlord';
-
+    renderTitle();
     renderNav();
+  }
+  // Progress in the tab title, so you can switch away and still see it, and (n) for what
+  // arrived while you were away.
+  let unseen = 0;
+  function renderTitle(){
+    const up = state.queue.find(t => t.status === 'uploading');
+    document.title = (unseen ? `(${unseen}) ` : '') + (up && up.total ? `↑ ${Math.round(up.loaded / up.total * 100)}% · Lanlord` : 'Lanlord');
   }
 
   // ---------- files: list/grid ----------
@@ -1025,6 +1072,10 @@
   function renderCrumbs(){
     const el = document.getElementById('crumbs');
     const parts = state.path ? state.path.split('/') : [];
+    // Uploads land in the folder you're in (even mid-search), so say which one.
+    const here = parts.length ? parts[parts.length - 1] : '';
+    document.querySelector('.dropzone-title').textContent = here ? `Drop files into ${here}` : 'Drop files or folders';
+    document.getElementById('uploadBtn').title = 'Upload to ' + (here || 'Shared files');
     el.innerHTML = '';
     const sep = () => { const s = document.createElement('span'); s.className = 'crumb-sep'; s.textContent = '/'; el.appendChild(s); };
     const add = (label, target, current) => {
@@ -1120,7 +1171,8 @@
     if (lazyVideos) lazyVideos.disconnect(); // everything it watches is about to be replaced
 
     if (!list.length){
-      shown.innerHTML = '<div class="empty-state">' + (state.q || state.type !== 'all' ? 'No files match your search.' : 'Nothing here yet. Drop a file to get started.') + '</div>';
+      shown.innerHTML = '<div class="empty-state">' + (state.q || state.type !== 'all' ? 'No files match your search.'
+        : matchMedia('(pointer:coarse)').matches ? 'Nothing here yet. Tap Upload to add files.' : 'Nothing here yet. Drop files here, or click Upload.') + '</div>';
       return;
     }
 
@@ -1290,6 +1342,44 @@
     else if (e.key === 'ArrowLeft') stepPreview(-1);
     else if (e.key === 'ArrowRight') stepPreview(1);
   });
+
+  // Touch: swipe sideways for the next one, down to close, as in Photos. Pinch stays the
+  // browser's own zoom, so a second finger or a zoomed-in page pans instead of swiping, and
+  // a drag on a video or audio player is scrubbing, not a swipe.
+  let pvSwipe = null, pvNoClickUntil = 0;
+  previewOverlay.addEventListener('touchstart', (e) => {
+    const zoomed = window.visualViewport && visualViewport.scale > 1.01;
+    pvSwipe = e.touches.length === 1 && !zoomed && !e.target.closest('video, audio, button')
+      ? { x0: e.touches[0].clientX, y0: e.touches[0].clientY, axis: null, d: 0 } : null;
+  }, { passive: true });
+  previewOverlay.addEventListener('touchmove', (e) => {
+    if (!pvSwipe) return;
+    if (e.touches.length > 1){ pvSwipe = null; settlePreview(true); return; }
+    e.preventDefault(); // or the page behind scrolls, and Android reads a pull-down as refresh
+    const dx = e.touches[0].clientX - pvSwipe.x0, dy = e.touches[0].clientY - pvSwipe.y0;
+    if (!pvSwipe.axis){ if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return; pvSwipe.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'; }
+    pvSwipe.d = pvSwipe.axis === 'x' ? dx : Math.max(0, dy);
+    previewBody.style.transition = 'none';
+    previewBody.style.transform = pvSwipe.axis === 'x' ? `translateX(${dx}px)` : `translateY(${pvSwipe.d}px)`;
+    if (pvSwipe.axis === 'y') previewBody.style.opacity = Math.max(.3, 1 - pvSwipe.d / 400);
+  }, { passive: false });
+  const endPreviewSwipe = () => {
+    const s = pvSwipe; pvSwipe = null;
+    if (!s || !s.axis) return;
+    pvNoClickUntil = Date.now() + 500; // the lifting finger can still click whatever it's over
+    const step = s.axis === 'x' && Math.abs(s.d) > 60 && previewList.length > 1;
+    settlePreview(!step);
+    if (step) stepPreview(s.d < 0 ? 1 : -1);
+    else if (s.axis === 'y' && s.d > 90) closePreview();
+  };
+  // Snap back into place; not animated when the next file is about to take its spot.
+  function settlePreview(animate){
+    previewBody.style.transition = animate ? 'transform .18s, opacity .18s' : 'none';
+    previewBody.style.transform = previewBody.style.opacity = '';
+  }
+  previewOverlay.addEventListener('touchend', endPreviewSwipe);
+  previewOverlay.addEventListener('touchcancel', endPreviewSwipe);
+  previewOverlay.addEventListener('click', (e) => { if (Date.now() < pvNoClickUntil){ e.stopImmediatePropagation(); e.preventDefault(); } }, true); // Immediate: the backdrop's own close handler is on this same element
 
   const IS_PHONE = /iPhone|iPad|Android/.test(navigator.userAgent);
   function downloadFile(p){ downloadFiles([p]); }
@@ -2293,7 +2383,7 @@
 
         <div class="settings-field">
           <div class="settings-label">Connect another device</div>
-          <img src="/connect-qr.png" alt="QR code that opens Lanlord" style="width:172px; height:172px; display:block; border-radius:12px; border:1px solid var(--border); background:#fff; padding:8px;">
+          <img src="/connect-qr.png" alt="QR code that opens Lanlord" style="width:172px; height:172px; display:block; border-radius:16px; border:1px solid var(--border); background:#fff; padding:8px;">
           <div style="font-size:12.5px; color:var(--muted-2); margin-top:6px;">Scan with the camera app to open Lanlord there.</div>
         </div>
       </div>`;
@@ -2360,16 +2450,20 @@
         box.innerHTML = '<div style="padding:10px 0; color:var(--muted-2); font-size:13.5px;">Nothing deleted recently.</div>';
         return;
       }
-      box.innerHTML = items.slice(0, 12).map(it => `
+      const top = box.querySelector('.trash-list') ? box.querySelector('.trash-list').scrollTop : 0; // a restore redraws the list; don't throw away where you were
+      box.innerHTML = `<div class="trash-list">` + items.map(it => `
         <div class="trash-row" data-entry="${escapeHtml(it.entry)}">
+          <div class="file-thumb ${it.isDir ? 'thumb-folder' : ''}">${trashThumbHtml(it)}</div>
           <div class="trash-name" title="${escapeHtml(it.from)}">${escapeHtml(it.name)}</div>
           <div class="trash-when">${fmtWhen(it.at)}</div>
           <button class="mini-btn" data-role="restore">Restore</button>
-        </div>`).join('')
+        </div>`).join('') + `</div>`
         + `<div class="trash-row" style="justify-content:space-between;">
-             <span style="color:var(--muted-2); font-size:12.5px;">${items.length} item${items.length === 1 ? '' : 's'}${items.length > 12 ? ' (12 shown)' : ''}</span>
+             <span style="color:var(--muted-2); font-size:12.5px;">${items.length} item${items.length === 1 ? '' : 's'}</span>
              <button class="mini-btn danger" data-role="empty-trash">Empty now</button>
            </div>`;
+      box.querySelector('.trash-list').scrollTop = top;
+      wireThumbFallbacks(box);
       box.querySelectorAll('[data-role="restore"]').forEach(btn => btn.addEventListener('click', () => {
         apiJson('/api/restore', 'POST', { entry: btn.closest('[data-entry]').dataset.entry }).then(res => {
           toast(res.ok ? 'Restored' : (res.body.error || 'Could not restore'));
@@ -2401,10 +2495,51 @@
   function announceArrivals(files){
     if (knownNames){
       const fresh = files.filter(f => !knownNames.has(f.path) && f.addedBy !== deviceName && Date.now() - f.mtime < 120000);
-      if (fresh.length === 1) toast(`${fresh[0].addedBy} sent ${fresh[0].name}`);
-      else if (fresh.length > 1) toast(`${fresh[0].addedBy} sent ${fresh.length} files`);
+      if (fresh.length) arrived(fresh, []);
     }
     knownNames = new Set(files.map(f => f.path));
+  }
+
+  // What other devices sent: a toast you can act on, or, while the tab is in the background,
+  // a count in the title and on the app icon, told in one toast when you come back.
+  let missedFiles = [], missedClips = [];
+  function arrived(files, clips){
+    if (document.hidden){
+      missedFiles.push(...files); missedClips.push(...clips);
+      unseen += files.length + clips.length;
+      renderTitle();
+      if (navigator.setAppBadge) navigator.setAppBadge(unseen).catch(() => {});
+      return;
+    }
+    if (files.length){
+      const one = files.length === 1 && files[0];
+      toast(one ? `${one.addedBy} sent ${one.name}` : `${files[0].addedBy} sent ${files.length} files`, 6000,
+        { label: one && (isPreviewable(one.name) || isOpenable(one.name)) ? 'View' : 'Show', run: () => showArrivals(files) });
+    }
+    if (clips.length > 1) toast(`${clips.length} texts arrived`, 6000, { label: 'Show', run: () => setView('clipboard') });
+    else if (clips.length){
+      const c = clips[0], text = c.text.trim().replace(/\s+/g, ' ');
+      toast(`${c.from}: ${text.length > 60 ? text.slice(0, 60) + '…' : text}`, 8000, { label: 'Copy', run: () => copyText(c.text) });
+    }
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) return;
+    const files = missedFiles, clips = missedClips;
+    missedFiles = []; missedClips = []; unseen = 0;
+    renderTitle();
+    if (navigator.clearAppBadge) navigator.clearAppBadge().catch(() => {});
+    if (files.length || clips.length) arrived(files, clips);
+  });
+  // A photo or video opens as a tap would; anything else is picked out in the list, ready for Get.
+  function showArrivals(files){
+    setView('files');
+    const one = files.length === 1 && files[0];
+    if (one && (isPreviewable(one.name) || isOpenable(one.name))) return openFile(one.path);
+    state.sel = {};
+    for (const f of files) state.sel[f.path] = true;
+    renderSel();
+    const el = document.querySelector(`[data-path="${CSS.escape(files[0].path)}"]`);
+    if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
   function refreshFiles(){
     // Both may have changed by the time the response lands (another folder, another query).
@@ -2431,18 +2566,22 @@
   function refreshDevices(){
     return api('/api/devices').then(r => r.json()).then(devices => {
       state.devices = devices;
-      renderSidebarDevices();
+      renderPairCard();
       renderConnPill();
       renderNav();
       if (state.view === 'devices') renderPage();
     }).catch(() => {});
   }
   let clipSig = null;
+  let knownClips = null; // as knownNames: what's there at page load isn't news
   function refreshClipboard(){
     return api('/api/clipboard').then(r => r.json()).then(items => {
       const sig = JSON.stringify(items);
       if (sig === clipSig) return;
       clipSig = sig;
+      const fresh = knownClips ? items.filter(c => !knownClips.has(c.id) && c.from !== deviceName) : [];
+      knownClips = new Set(items.map(c => c.id));
+      if (fresh.length) arrived([], fresh);
       state.clipboard = items;
       renderClipSidebar();
       renderNav();
@@ -2461,6 +2600,7 @@
       if (res.body && res.body.isHost){
         if (!state.isHost){
           state.isHost = true; deviceName = res.body.name; if (state.view !== 'files') renderPage();
+          renderPairCard();
           api('/api/server-info').then(r => r.json()).then(info => { if (info.networkWarning) toast(info.networkWarning, 20000); }).catch(() => {});
         }
         return;

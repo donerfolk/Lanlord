@@ -1508,12 +1508,30 @@ function checkNetwork() {
 app.get('/api/trash', (req, res) => {
   pruneTrash();
   let entries = [];
-  try { entries = fs.readdirSync(TRASH_DIR); } catch (e) { /* no trash yet */ }
+  try { entries = fs.readdirSync(TRASH_DIR, { withFileTypes: true }); } catch (e) { /* no trash yet */ }
   res.json(entries
-    .map((entry) => ({ entry, from: trashOrigin(entry), at: trashStamp(entry) }))
+    .map((d) => ({ entry: d.name, from: trashOrigin(d.name), at: trashStamp(d.name), isDir: d.isDirectory() }))
     .filter((e) => e.from)
     .map((e) => Object.assign(e, { name: e.from.split('/').pop() }))
     .sort((a, b) => b.at - a.at));
+});
+
+// Thumbnails for the Recently deleted list. The trash is a dot folder, which /files and
+// /api/preview refuse by design, so the entry name picks the file here as it does for a restore.
+// No kind: the file itself (what a browser can decode); kind: the same ffmpeg previews as /api/preview.
+app.get('/api/trash/preview', (req, res) => {
+  const entry = path.basename(String(req.query.entry || ''));
+  const kind = String(req.query.kind || '');
+  const src = path.join(TRASH_DIR, entry);
+  if (!trashOrigin(entry) || entry.includes(':') || !PREVIEW_EXTS.test(entry) || (kind && kind !== 'image' && kind !== 'poster')) return res.status(400).json({ error: 'bad request' });
+  if (!fs.existsSync(src) || fs.statSync(src).isDirectory()) return res.status(404).json({ error: 'not found' });
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Content-Security-Policy', "sandbox; frame-ancestors 'none'");
+  if (!kind) return res.sendFile(src, { maxAge: '5m' });
+  makePreview(src, kind).then(
+    (out) => res.sendFile(out, { maxAge: '1d' }),
+    (e) => { console.error('trash preview failed:', src, e.message); res.status(415).json({ error: 'no preview' }); });
 });
 
 app.post('/api/restore', (req, res) => {
