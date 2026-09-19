@@ -1,0 +1,128 @@
+name: Bug report
+description: Something in Lanlord doesn't work as it should.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Connection problems are often covered by
+        [Troubleshooting](https://github.com/donerfolk/Lanlord#troubleshooting) in the README.
+
+        **Leave out your passcode, and any link containing `?k=`: that is the passcode.**
+        Security problems go to a [private report](https://github.com/donerfolk/Lanlord/security/advisories/new), not here.
+
+  - type: input
+    id: pc-os
+    attributes:
+      label: PC operating system
+      placeholder: Windows 11 23H2
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node version
+      description: Output of `node --version` on the PC.
+      placeholder: v24.16.0
+    validations:
+      required: true
+  - type: dropdown
+    id: runs-as
+    attributes:
+      label: How Lanlord runs on the PC
+      options:
+        - In a console window (npm start / node server.js)
+        - As a Windows service
+    validations:
+      required: true
+
+  - type: input
+    id: phone
+    attributes:
+      label: Phone or other device
+      description: Model and OS version. Write "PC browser" if the problem is on the PC itself.
+      placeholder: iPhone 15 Pro, iOS 26.5
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser on that device
+      options:
+        - Safari
+        - Lanlord on the Home Screen (Safari)
+        - Chrome
+        - Samsung Internet
+        - Firefox
+        - Edge
+        - iPhone Shortcut (Share → Lanlord)
+        - Other (say below)
+    validations:
+      required: true
+  - type: dropdown
+    id: scheme
+    attributes:
+      label: http or https
+      options:
+        - http (port 8811)
+        - https (port 8812)
+        - Both show the problem
+        - Not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: connect
+    attributes:
+      label: How the device reaches the PC
+      options:
+        - IP address (e.g. http://192.168.1.20:8811)
+        - PC name (http://<pc-name>.local:8811)
+        - Scanned the QR code
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened
+      description: Include the steps, so someone else can make it happen too.
+      placeholder: |
+        1. On the iPhone, Upload → Photo Library, picked a 4K video
+        2. The progress bar stopped at 40% …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected instead
+    validations:
+      required: true
+
+  - type: dropdown
+    id: errors
+    attributes:
+      label: Does the console or log show errors?
+      description: |
+        The PC's console window, or `daemon/lanlord.err.log` / `daemon/lanlord.out.log` when
+        Lanlord runs as a service. On the PC, also the browser's console (F12).
+      options:
+        - Yes, pasted below
+        - No errors there
+        - I didn't check
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Errors or log lines
+      description: Passcode and `?k=` links removed, please.
+      render: text
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Before you submit
+      options:
+        - label: I removed my passcode and any `?k=` links from what I pasted.
+          required: true

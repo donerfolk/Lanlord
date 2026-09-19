@@ -1,0 +1,37 @@
+name: Feature request
+description: Suggest something Lanlord could do.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Lanlord stays small on purpose: no cloud, no account, no app to install, and it must
+        work with the internet unplugged. Ideas that need any of those are out of scope.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The situation, not the solution yet. What gets in your way today?
+      placeholder: I send 200 photos at once from my iPhone, and afterwards I can't tell which ones …
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: On which device?
+      options:
+        - Phone
+        - PC
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help?
+      description: How you imagine it working, if you have an idea.
+  - type: textarea
+    id: workaround
+    attributes:
+      label: What do you do now instead?

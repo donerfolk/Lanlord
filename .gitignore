@@ -1,0 +1,7 @@
+node_modules/
+certs/
+daemon/
+shared/
+auth.json
+devices.json
+connect-qr.png

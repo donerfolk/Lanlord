@@ -1,0 +1,17 @@
+{
+  "name": "Lanlord",
+  "short_name": "Lanlord",
+  "description": "Full-quality file transfer between your PC and your phone over the local network.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#eef1f6",
+  "theme_color": "#eef1f6",
+  "icons": [{ "src": "/icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }],
+  "share_target": {
+    "action": "/api/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": { "title": "title", "text": "text", "url": "url", "files": [{ "name": "files", "accept": ["*/*"] }] }
+  }
+}
