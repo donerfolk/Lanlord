@@ -14,6 +14,7 @@ A short tour of the code for anyone changing it. For using Lanlord, see the
 | `certs.js` | Makes a local certificate authority (10 years, limited to local names and private addresses) and a short-lived server certificate, reissued when the PC's addresses change. |
 | `selftest.js` | The tests. `node selftest.js` prints `selftest ok`. |
 | `install-service.js`, `uninstall-service.js` | Install or remove the Windows service (`node-windows`). |
+| `release/` | Double-click Install/Uninstall scripts for the release zip, which `.github/workflows/release.yml` builds (with `node.exe`) when a `v*` tag is pushed. |
 
 Created at runtime and never committed: `shared/` (your files, plus the hidden `.meta.json`,
 `.clipboard.json`, `.trash/`, `.previews/` and `.uploads/`), `auth.json` (the passcode),

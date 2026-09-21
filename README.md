@@ -67,6 +67,21 @@ your Home Screen like an app.
 
 ## Quick start
 
+1. Download `Lanlord-...-windows.zip` from the [latest release](https://github.com/donerfolk/Lanlord/releases/latest).
+2. Right-click it → **Extract All**, into a folder where it can stay (for example
+   `Documents\Lanlord`). Your shared files will live in its `shared` folder.
+3. Double-click **Install Lanlord** and allow it to make changes. Lanlord now starts with
+   Windows, and the page opens in your browser: go to **Settings** to find the QR code
+   for your phone.
+
+To remove it, double-click **Uninstall Lanlord**, then delete the folder.
+
+Windows may say it "protected your PC" because the scripts aren't signed: click **More
+info → Run anyway**. The optional extras below (ffmpeg, Git for Windows) work the same
+with the zip.
+
+### Run from source
+
 You need a Windows 10/11 PC with [Node.js 24](https://nodejs.org). Optional but
 recommended:
 
@@ -86,7 +101,7 @@ npm start
 The console prints the addresses to open, the **passcode**, and where it saved a QR code
 (`connect-qr.png`).
 
-### Keep it running (Windows service)
+#### Keep it running (Windows service)
 
 To have Lanlord start with Windows, run this once from **PowerShell as Administrator**
 in the Lanlord folder:
