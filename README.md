@@ -4,8 +4,9 @@
 
 <h1>Lanlord</h1>
 
-<p><strong>AirDrop for Windows.</strong> Send photos, videos and files between your iPhone or Android<br>
-and your Windows PC over Wi-Fi. No cable, no cloud, no account, no app to install on the phone.</p>
+<p><strong>AirDrop for Windows — and the closest AirDrop alternative for Windows PC users.</strong><br>
+Send photos, videos and files between your iPhone or Android and your Windows 10/11 PC<br>
+over Wi-Fi. No cable, no iTunes, no cloud, no account, no app to install on the phone.</p>
 
 <p>
 <a href="#send-from-the-iphone-share-sheet-shortcut"><img src="https://img.shields.io/badge/Add%20to%20the%20iPhone%20Share%20sheet-2a75e3?style=for-the-badge&logo=apple&logoColor=white" alt="Add Lanlord to the iPhone Share sheet" height="36"></a><br>
@@ -52,15 +53,15 @@ your Home Screen like an app.
 
 ## How it compares
 
-|  | Lanlord | AirDrop | Cloud drives | LocalSend |
-|---|:---:|:---:|:---:|:---:|
-| iPhone ↔ Windows | ✅ | ❌ | ✅ | ✅ |
-| Nothing to install on the phone | ✅ | ✅ | ❌ | ❌ |
-| Files never leave your network | ✅ | ✅ | ❌ | ✅ |
-| Original-quality video from iPhone | ✅ ¹ | ✅ | depends on settings | ✅ |
-| A folder you can browse later, from any device | ✅ | ❌ | ✅ | ❌ |
-| Works with no router | PC hotspot | ✅ | ❌ | ❌ |
-| Send from the Share sheet | iPhone Shortcut | ✅ | ✅ | ✅ |
+|  | Lanlord | AirDrop | Nearby Share (Quick Share) | Cloud drives | LocalSend |
+|---|:---:|:---:|:---:|:---:|:---:|
+| iPhone ↔ Windows | ✅ | ❌ | ❌ (Android only) | ✅ | ✅ |
+| Nothing to install on the phone | ✅ | ✅ | needs Google app | ❌ | ❌ |
+| Files never leave your network | ✅ | ✅ | ✅ | ❌ | ✅ |
+| Original-quality video from iPhone | ✅ ¹ | ✅ | n/a | depends on settings | ✅ |
+| A folder you can browse later, from any device | ✅ | ❌ | ❌ | ✅ | ❌ |
+| Works with no router | PC hotspot | ✅ | ✅ | ❌ | ❌ |
+| Send from the Share sheet | iPhone Shortcut | ✅ | ✅ | ✅ | ✅ |
 
 ¹ iOS converts video when a web page picks it from the photo library. See
 [Getting original quality from an iPhone](#getting-original-quality-from-an-iphone).
@@ -278,6 +279,13 @@ get the original.
 
 Yes. Any phone or tablet with a modern browser can connect. Android is tested with Chrome
 on a Samsung Galaxy S8; see [On Android](#on-android) for the details.
+
+### How is Lanlord different from Nearby Share (Quick Share)?
+
+Google's Nearby Share (renamed Quick Share) works well between Android and Windows, but it
+doesn't support iPhone, and requires the Google app installed on both sides. Lanlord
+works with any phone that has a browser, including iPhone, and keeps everything in a folder
+your phone can browse any time — not just while you're actively sending.
 
 ### How is Lanlord different from LocalSend, Snapdrop or PairDrop?
 
