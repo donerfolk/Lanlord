@@ -4,7 +4,7 @@
 
 <h1>Lanlord</h1>
 
-<p><strong>AirDrop for Windows — and the closest AirDrop alternative for Windows PC users.</strong><br>
+<p><strong>AirDrop for Windows, and the closest AirDrop alternative for Windows PC users.</strong><br>
 Send photos, videos and files between your iPhone or Android and your Windows 10/11 PC<br>
 over Wi-Fi. No cable, no iTunes, no cloud, no account, no app to install on the phone.</p>
 
@@ -285,7 +285,7 @@ on a Samsung Galaxy S8; see [On Android](#on-android) for the details.
 Google's Nearby Share (renamed Quick Share) works well between Android and Windows, but it
 doesn't support iPhone, and requires the Google app installed on both sides. Lanlord
 works with any phone that has a browser, including iPhone, and keeps everything in a folder
-your phone can browse any time — not just while you're actively sending.
+your phone can browse any time, not just while you're actively sending.
 
 ### How is Lanlord different from LocalSend, Snapdrop or PairDrop?
 
