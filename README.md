@@ -18,7 +18,10 @@ over Wi-Fi. No cable, no iTunes, no cloud, no account, no app to install on the 
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2a75e3" alt="MIT license"></a>
 <img src="https://img.shields.io/badge/PC-Windows%2010%20%7C%2011-2a75e3" alt="Runs on Windows 10 and 11">
 <img src="https://img.shields.io/badge/phone-iPhone%20%7C%20Android-2a75e3" alt="Works with iPhone and Android">
-<a href="https://buymeacoffee.com/donerfolk"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-ffdd00?logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
+</p>
+
+<p>
+<a href="https://buymeacoffee.com/donerfolk"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="40" alt="Buy me a coffee"></a>
 </p>
 
 <p>
@@ -351,7 +354,7 @@ automatically if ffmpeg is installed.
 Lanlord is free and open source. If it saved you time or money, a coffee is a great way to
 say thanks. A ⭐ on GitHub helps other people find it too.
 
-<a href="https://buymeacoffee.com/donerfolk"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" height="48"></a>
+<a href="https://buymeacoffee.com/donerfolk"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" height="60"></a>
 
 ## License
 
