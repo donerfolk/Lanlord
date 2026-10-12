@@ -8,6 +8,10 @@
 Send photos, videos and files between your iPhone or Android and your Windows 10/11 PC<br>
 over Wi-Fi. No cable, no iTunes, no cloud, no account, no app to install on the phone.</p>
 
+<p align="center">
+<a href="https://diestro.dev/tools/lanlord/"><strong>Setup guide and download: diestro.dev/tools/lanlord</strong></a>
+</p>
+
 <p>
 <a href="#send-from-the-iphone-share-sheet-shortcut"><img src="https://img.shields.io/badge/Add%20to%20the%20iPhone%20Share%20sheet-2a75e3?style=for-the-badge&logo=apple&logoColor=white" alt="Add Lanlord to the iPhone Share sheet" height="36"></a><br>
 <sub>A free Shortcut, then <strong>Share → Lanlord</strong> from Photos or any app, like AirDrop.</sub>
